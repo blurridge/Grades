@@ -1,0 +1,182 @@
+#include <iostream>
+#include <stdlib.h>
+#include <iomanip>
+#include <algorithm>
+
+using namespace std;
+
+int main()
+{
+
+    //Declaration of Students, Choices, and Individual Grades
+
+    std::string StudentNames[38] = {"Machacon, Zach Riane I.", "Cinco, Corinne D.", "Creus, Elena Ruth U.", "Palban, Mary Hyacinthe C.","Villamor, Jilliane G.",
+    "Sandiego, Devhora  Kate V.", "Giango, Khirsten Zia C.", "Suarez, Arella", "Tangaro, Jelian E.", "Ledesma, Jacy Marie S.", "Pitogo, Aubrey Jean A.",
+    "Mercado, Anthoniette Marie C.", "Malijao, Adea Trix", "Jumao-as, Sophia Camille M.", "Baluma, Karylle Dawn F.", "Puerto, Sophia Laurice A.",
+    "Posadas, Caitlin Michelle Rai C.", "Roman, Andrei H.", "Nalo, Ma. Julia Camille G.", "Midon, Felicity Grace P.", "Kho, Jewel Kristine G.",
+    "Alviola, Alixandra Iris S.", "Balungkas, Angelica Ann V.", "Angcos, Mareya Teresa B.", "Ceniza, Samantha Rae J.", "Arcilla, Ma. Karyll G.",
+    "Cardoso, Andrei Lloyd G.", "Saldana, Xydel Vie R.", "Vasquez, Elaisha Carmel R.", "Mondonedo, Anna Ciril", "Alday, Mayan Bienettej C.",
+    "Pili, Chielshey Josh P.", "Mosqueda, Hans Gabriel", "Calub, Jeahera Trinity H.", "Bernat, Christian George S.", "Damole, Rey Emmanuel T.",
+    "Galo, Heart Dominique C."};
+
+    int WrittenWorks[37] = {95, 86, 91, 66, 68, 75, 65, 87, 91, 67, 74, 81, 75, 80, 77, 72, 82, 80, 77, 69, 86, 67, 86,
+    89, 73, 67, 90, 87, 85, 76, 74, 65, 93, 90, 70, 77, 75};
+
+    int PerformanceTask[37] = {94, 81, 92, 72, 74, 71, 92, 88, 79, 77, 71, 74, 67, 92, 74, 77, 78, 75, 78, 77, 75, 87, 84,
+    84, 83, 89, 86, 89, 81, 66, 79, 79, 81, 82, 74, 87, 93};
+
+    int QuarterlyAssess[37] = {93, 91, 82, 71, 73, 73, 72, 68, 69, 67, 71, 73, 73, 82, 67, 91, 88, 70, 71, 77, 79, 84, 80,
+    78, 76, 82, 74, 75, 80, 76, 79, 69, 71, 92, 75, 82, 83};
+
+    double FinalGrades[37];
+
+    string choice;
+
+    string choice2;
+
+    int y = 0;
+
+    int z = 0;
+
+    double average;
+
+    double sum = 0;
+
+    double passed = 0;
+
+    double failed = 0;
+
+
+    //Menu of Choices
+
+    menu:
+    cout << "Menu of Choices" << endl;
+    cout << "1. Unsorted" << endl;
+    cout << "2. Sorted Names (Alphabetical)" << endl;
+    cout << "3. Sorted Grades (Highest to Lowest)" << endl;
+    cout << "4. Quit" << endl << endl;
+    cout << "What is your choice? Please enter the number." << endl;
+    cin >> choice;
+    system("cls");
+
+    //Conditional Statements for Choices
+
+    if((choice == "1") || (choice == "one") || (choice == "One"))
+    {
+        cout << setw(25) << "Unsorted" << endl << endl;
+        cout << setw(40) << left << "Name" << "Grade" << endl << endl;
+
+        for(int x = 0; x <= 36; x++)
+        {
+            FinalGrades[x] = (WrittenWorks[x]*0.2)+(PerformanceTask[x]*0.6)+(QuarterlyAssess[x]*0.2);
+            cout << setw(40) << left << StudentNames[x] << setprecision(4) << FinalGrades[x] << endl << endl;
+
+            if(FinalGrades[x] >= 75)
+            {
+                passed = passed + 1;
+            }
+            else
+            {
+                failed = failed + 1;
+            }
+        }
+
+        for(int y = 0; y <= 36; y++)
+        {
+            sum = sum + FinalGrades[y];
+        }
+
+        cout << "Arithmetic Mean: " << setprecision(4) << sum/36 << endl;
+        cout << "% Passing: " << setprecision(4) << (passed/37)*100 << "%" << endl;
+        cout << "% Failing: " << setprecision(4) << (failed/37)*100 << "%" << endl;
+    }
+
+    else if((choice == "2") || (choice == "two") || (choice == "Two"))
+    {
+        cout << setw(35) << "Sorted (Alphabetically)" << endl << endl;
+        cout << setw(40) << left << "Name" << "Grade" << endl << endl;
+
+        for(int x = 0; x <= 36; x++)
+        {
+            FinalGrades[x] = (WrittenWorks[x]*0.2)+(PerformanceTask[x]*0.6)+(QuarterlyAssess[x]*0.2);
+
+            if(FinalGrades[x] >= 75)
+            {
+                passed = passed + 1;
+            }
+            else
+            {
+                failed = failed + 1;
+            }
+        }
+        for(int a = 1; a < 36; a++)
+        {
+            for(int b = 0; b < (n-i))
+        }
+
+
+        for(int y = 0; y <= 36; y++)
+        {
+            sum = sum + FinalGrades[y];
+        }
+
+        cout << "Arithmetic Mean: " << setprecision(4) << sum/36 << endl;
+        cout << "% Passing: " << setprecision(4) << (passed/37)*100 << "%" << endl;
+        cout << "% Failing: " << setprecision(4) << (failed/37)*100 << "%" << endl;
+    }
+
+    else if((choice == "3") || (choice == "three") || (choice == "Three"))
+    {
+        cout << setw(35) << "Sorted (Highest to Lowest)" << endl << endl;
+        cout << setw(40) << left << "Name" << "Grade" << endl << endl;
+
+        for(int x = 0; x <= 36; x++)
+        {
+            FinalGrades[x] = (WrittenWorks[x]*0.2)+(PerformanceTask[x]*0.6)+(QuarterlyAssess[x]*0.2);
+            cout << setw(40) << left << StudentNames[x] << setprecision(4) << FinalGrades[x] << endl << endl;
+
+            if(FinalGrades[x] >= 75)
+            {
+                passed = passed + 1;
+            }
+            else
+            {
+                failed = failed + 1;
+            }
+        }
+
+        for(int y = 0; y <= 36; y++)
+        {
+            sum = sum + FinalGrades[y];
+        }
+
+        cout << "Arithmetic Mean: " << setprecision(4) << sum/36 << endl;
+        cout << "% Passing: " << setprecision(4) << (passed/37)*100 << "%" << endl;
+        cout << "% Failing: " << setprecision(4) << (failed/37)*100 << "%" << endl;
+    }
+
+    else if((choice == "4") || (choice == "four") || (choice == "Four"))
+    {
+        cout << "Are you sure you want to quit? (y/n)" << endl;
+        cin >> choice2;
+        system("cls");
+        {
+            if((choice2 == "y") || (choice2 == "yes") || (choice2 == "Yes")) //accepts other variations of yes.
+            {
+                cout << "Goodbye!" << endl;
+            }
+            else if((choice2 == "n") || (choice2 == "no") || (choice2 == "No")) //accepts other variations of no.
+            {
+                goto menu;
+            }
+        }
+    }
+
+    else
+    {
+        cout << "Invalid number. Please enter again." << endl << endl;
+        goto menu;
+    }
+
+    return 0;
+}
