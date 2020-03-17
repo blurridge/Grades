@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <iomanip>
 #include <algorithm>
+#include <conio.h>
+#include <stdio.h>
 
 using namespace std;
 
@@ -10,7 +12,7 @@ int main()
 
     //Declaration of Students, Choices, and Individual Grades
 
-    std::string StudentNames[38] = {"Machacon, Zach Riane I.", "Cinco, Corinne D.", "Creus, Elena Ruth U.", "Palban, Mary Hyacinthe C.","Villamor, Jilliane G.",
+    string StudentNames[38] = {"Machacon, Zach Riane I.", "Cinco, Corinne D.", "Creus, Elena Ruth U.", "Palban, Mary Hyacinthe C.","Villamor, Jilliane G.",
     "Sandiego, Devhora  Kate V.", "Giango, Khirsten Zia C.", "Suarez, Arella", "Tangaro, Jelian E.", "Ledesma, Jacy Marie S.", "Pitogo, Aubrey Jean A.",
     "Mercado, Anthoniette Marie C.", "Malijao, Adea Trix", "Jumao-as, Sophia Camille M.", "Baluma, Karylle Dawn F.", "Puerto, Sophia Laurice A.",
     "Posadas, Caitlin Michelle Rai C.", "Roman, Andrei H.", "Nalo, Ma. Julia Camille G.", "Midon, Felicity Grace P.", "Kho, Jewel Kristine G.",
@@ -46,15 +48,73 @@ int main()
 
     double failed = 0;
 
+    int c = 1;
+
+    string tempStudentNames;
+
+    int tempWW;
+
+    int tempPT;
+
+    int tempQA;
+
+    double tempFG;
+
+    string login1;
+
+    string login2;
+
+    string strPass = "";
+
+    char numb;
+
+    int StarNum = 0;
+
+    int bot = 0;
+
+    string botChoice;
 
     //Menu of Choices
+
+    cout << "Welcome to the USC ISMIS E-Portal!" << endl;
+    system("pause");
+    system("cls");
+    cout << "USC ISMIS E-Portal" << endl << endl;
+    cout << "Please enter your login details." << endl;
+    cout << "Backspaces are not allowed when entering your password." << endl <<endl;
+    cout << "Username: ";
+    cin >> login1;
+    cout << "Password: ";
+    while (numb != 13)
+    {
+        numb = (char)getch();
+        if(numb == 13)
+        {
+            break;
+        }
+        else if(numb == 8 || numb == 127)
+        {
+            cout << "\b \b";
+        }
+        StarNum++;
+        strPass += c;
+        cout << "*";
+    }
+
+    system("cls");
+    cout << "Login Successful!" << endl;
+    system("cls");
+    cout << "Welcome, " << login1 << "!" << endl << endl;
+    system("pause");
+    system("cls");
 
     menu:
     cout << "Menu of Choices" << endl;
     cout << "1. Unsorted" << endl;
     cout << "2. Sorted Names (Alphabetical)" << endl;
     cout << "3. Sorted Grades (Highest to Lowest)" << endl;
-    cout << "4. Quit" << endl << endl;
+    cout << "4. Sorted Grades (Lowest to Highest)" << endl;
+    cout << "5. Quit" << endl << endl;
     cout << "What is your choice? Please enter the number." << endl;
     cin >> choice;
     system("cls");
@@ -63,22 +123,55 @@ int main()
 
     if((choice == "1") || (choice == "one") || (choice == "One"))
     {
-        cout << setw(25) << "Unsorted" << endl << endl;
-        cout << setw(40) << left << "Name" << "Grade" << endl << endl;
+        cout << setw(43) << "COMPUTER PROJECT" <<endl;
+        cout << setw(47) << "ACADEMIC YEAR 2018-2019" <<endl;
+        cout << setw(48) << "UNIVERSITY OF SAN CARLOS" <<endl;
+        cout << setw(55) << "BASIC EDUCATION DEPARTMENT- SOUTH CAMPUS" <<endl;
+        cout << setw(50) << "J. Alcantara St., Cebu City" <<endl << endl;
+        cout << setw(40) << left << "Section: 10 - SCB" << "Subject: TLE/Computer 10" << endl;
+        cout << setw(40) << left << "Adviser: Mrs. Analiza Ceballos" << "Teacher: Mrs. Eleuteria Dang B. Guanzon" << endl << endl;
+        cout << setw(40) << right << "Unsorted" << endl << endl << endl;
+        cout << setw(44) << left << "Name";
+        cout << setw(5) << left << "WW";
+        cout << setw(5) << left << "PT";
+        cout << setw(5) << left << "QA";
+        cout << setw(10) << left << "Grade";
+        cout << setw(5) << left << "Remarks" << endl << endl;
 
         for(int x = 0; x <= 36; x++)
         {
+            if(c <= 9)
+            {
             FinalGrades[x] = (WrittenWorks[x]*0.2)+(PerformanceTask[x]*0.6)+(QuarterlyAssess[x]*0.2);
-            cout << setw(40) << left << StudentNames[x] << setprecision(4) << FinalGrades[x] << endl << endl;
+            cout << c << setw(3) << left << ". "  << setw(40) << left << StudentNames[x];
+            cout << setw(5) << left << setprecision(2) << fixed <<  WrittenWorks[x];
+            cout << setw(5) << left << setprecision(2) << fixed << PerformanceTask[x];
+            cout << setw(5) << left << setprecision(2) << fixed<< QuarterlyAssess[x];
+            cout << setw(10) << left << setprecision(2) << fixed << FinalGrades[x];
+            }
+
+            else if(c > 9)
+            {
+            FinalGrades[x] = (WrittenWorks[x]*0.2)+(PerformanceTask[x]*0.6)+(QuarterlyAssess[x]*0.2);
+            cout << c << ". " << setw(40) << left << StudentNames[x];
+            cout << setw(5) << left << setprecision(2) << fixed << WrittenWorks[x];
+            cout << setw(5) << left << setprecision(2) << fixed << PerformanceTask[x];
+            cout << setw(5) << left << setprecision(2) << fixed << QuarterlyAssess[x];
+            cout << setw(10) << left << setprecision(2) << fixed << FinalGrades[x];
+            }
 
             if(FinalGrades[x] >= 75)
             {
                 passed = passed + 1;
+                cout << setw(5) << left << "Passed" << endl << endl;
             }
             else
             {
                 failed = failed + 1;
+                cout << setw(5) << left << "Failed" << endl << endl;
             }
+
+            c++;
         }
 
         for(int y = 0; y <= 36; y++)
@@ -86,63 +179,201 @@ int main()
             sum = sum + FinalGrades[y];
         }
 
-        cout << "Arithmetic Mean: " << setprecision(4) << sum/36 << endl;
-        cout << "% Passing: " << setprecision(4) << (passed/37)*100 << "%" << endl;
-        cout << "% Failing: " << setprecision(4) << (failed/37)*100 << "%" << endl;
+        cout << setw(25) << left << "Submitted by:";
+        cout << setw(10) << left << "Arithmetic Mean: " << setprecision(2) << fixed << setw(10) << left << sum/37;
+        cout << setw(10) << left << "Checked by:" << endl;
+        cout << setw(25) << left << "" << setw(17) << left << "% Passing: " << setprecision(2) << fixed << (passed/37)*100 << "%" << endl;
+        cout << setw(25) << left << "Machacon, Zach Riane";
+        cout << setw(17) << left << "% Failing: " << setprecision(2) << fixed << (failed/37)*100 << setw(5) << left << "%";
+        cout << "Engr. Dang B. Guanzon" << endl;
+        cout << setw(52) << left << "Student Name";
+        cout << "Computer Teacher" << endl << endl;
     }
 
     else if((choice == "2") || (choice == "two") || (choice == "Two"))
     {
-        cout << setw(35) << "Sorted (Alphabetically)" << endl << endl;
-        cout << setw(40) << left << "Name" << "Grade" << endl << endl;
+        cout << setw(43) << "COMPUTER PROJECT" <<endl;
+        cout << setw(47) << "ACADEMIC YEAR 2018-2019" <<endl;
+        cout << setw(48) << "UNIVERSITY OF SAN CARLOS" <<endl;
+        cout << setw(55) << "BASIC EDUCATION DEPARTMENT- SOUTH CAMPUS" <<endl;
+        cout << setw(50) << "J. Alcantara St., Cebu City" <<endl << endl;
+        cout << setw(40) << left << "Section: 10 - SCB" << "Subject: TLE/Computer 10" << endl;
+        cout << setw(40) << left << "Adviser: Mrs. Analiza Ceballos" << "Teacher: Mrs. Eleuteria Dang B. Guanzon" << endl << endl;
+        cout << setw(50) << right << "Sorted (Alphabetically)" << endl << endl << endl;
+        cout << setw(44) << left << "Name";
+        cout << setw(5) << left << "WW";
+        cout << setw(5) << left << "PT";
+        cout << setw(5) << left << "QA";
+        cout << setw(10) << left << "Grade";
+        cout << setw(5) << left << "Remarks" << endl << endl;
+
 
         for(int x = 0; x <= 36; x++)
         {
             FinalGrades[x] = (WrittenWorks[x]*0.2)+(PerformanceTask[x]*0.6)+(QuarterlyAssess[x]*0.2);
+        }
+
+        for(int counter = 36; counter > 0; counter --)
+        {
+            for(int index = 0; index < 36; index++)
+            {
+                if(StudentNames[index] > StudentNames[index+1])
+                {
+                    tempStudentNames = StudentNames[index + 1];
+                    StudentNames[index + 1] = StudentNames[index];
+                    StudentNames[index] = tempStudentNames;
+
+                    tempWW = WrittenWorks[index + 1];
+                    WrittenWorks[index + 1] = WrittenWorks[index];
+                    WrittenWorks[index] = tempWW;
+
+                    tempPT = PerformanceTask[index + 1];
+                    PerformanceTask[index + 1] = PerformanceTask[index];
+                    PerformanceTask[index] = tempPT;
+
+                    tempQA = QuarterlyAssess[index + 1];
+                    QuarterlyAssess[index + 1] = QuarterlyAssess[index];
+                    QuarterlyAssess[index] = tempQA;
+
+                    tempFG = FinalGrades[index + 1];
+                    FinalGrades[index + 1] = FinalGrades[index];
+                    FinalGrades[index] = tempFG;
+                }
+            }
+        }
+
+        for(int x = 0; x <= 36; x++)
+        {
+            if(c <= 9)
+            {
+            cout << c << setw(3) << left << ". "  << setw(40) << left << StudentNames[x];
+            cout << setw(5) << left << setprecision(2) << fixed <<  WrittenWorks[x];
+            cout << setw(5) << left << setprecision(2) << fixed << PerformanceTask[x];
+            cout << setw(5) << left << setprecision(2) << fixed<< QuarterlyAssess[x];
+            cout << setw(10) << left << setprecision(2) << fixed << FinalGrades[x];
+            }
+
+            else if(c > 9)
+            {
+            cout << c << ". " << setw(40) << left << StudentNames[x];
+            cout << setw(5) << left << setprecision(2) << fixed <<  WrittenWorks[x];
+            cout << setw(5) << left << setprecision(2) << fixed << PerformanceTask[x];
+            cout << setw(5) << left << setprecision(2) << fixed<< QuarterlyAssess[x];
+            cout << setw(10) << left << setprecision(2) << fixed << FinalGrades[x];
+            }
 
             if(FinalGrades[x] >= 75)
             {
                 passed = passed + 1;
+                cout << setw(5) << left << "Passed" << endl << endl;
             }
             else
             {
                 failed = failed + 1;
+                cout << setw(5) << left << "Failed" << endl << endl;
             }
-        }
-        for(int a = 1; a < 36; a++)
-        {
-            for(int b = 0; b < (n-i))
-        }
 
+            c++;
+        }
 
         for(int y = 0; y <= 36; y++)
         {
             sum = sum + FinalGrades[y];
         }
-
-        cout << "Arithmetic Mean: " << setprecision(4) << sum/36 << endl;
-        cout << "% Passing: " << setprecision(4) << (passed/37)*100 << "%" << endl;
-        cout << "% Failing: " << setprecision(4) << (failed/37)*100 << "%" << endl;
+        cout << setw(25) << left << "Submitted by:";
+        cout << setw(10) << left << "Arithmetic Mean: " << setprecision(2) << fixed << setw(10) << left << sum/37;
+        cout << setw(10) << left << "Checked by:" << endl;
+        cout << setw(25) << left << "" << setw(17) << left << "% Passing: " << setprecision(2) << fixed << (passed/37)*100 << "%" << endl;
+        cout << setw(25) << left << "Machacon, Zach Riane";
+        cout << setw(17) << left << "% Failing: " << setprecision(2) << fixed << (failed/37)*100 << setw(5) << left << "%";
+        cout << "Engr. Dang B. Guanzon" << endl;
+        cout << setw(52) << left << "Student Name";
+        cout << "Computer Teacher" << endl << endl;
     }
 
     else if((choice == "3") || (choice == "three") || (choice == "Three"))
     {
-        cout << setw(35) << "Sorted (Highest to Lowest)" << endl << endl;
-        cout << setw(40) << left << "Name" << "Grade" << endl << endl;
+        cout << setw(43) << "COMPUTER PROJECT" <<endl;
+        cout << setw(47) << "ACADEMIC YEAR 2018-2019" <<endl;
+        cout << setw(48) << "UNIVERSITY OF SAN CARLOS" <<endl;
+        cout << setw(55) << "BASIC EDUCATION DEPARTMENT- SOUTH CAMPUS" <<endl;
+        cout << setw(50) << "J. Alcantara St., Cebu City" <<endl << endl;
+        cout << setw(40) << left << "Section: 10 - SCB" << "Subject: TLE/Computer 10" << endl;
+        cout << setw(40) << left << "Adviser: Mrs. Analiza Ceballos" << "Teacher: Mrs. Eleuteria Dang B. Guanzon" << endl << endl;
+        cout << setw(50) << right << "Sorted (Highest to Lowest)" << endl << endl << endl;
+        cout << setw(44) << left << "Name";
+        cout << setw(5) << left << "WW";
+        cout << setw(5) << left << "PT";
+        cout << setw(5) << left << "QA";
+        cout << setw(10) << left << "Grade";
+        cout << setw(5) << left << "Remarks" << endl << endl;
 
         for(int x = 0; x <= 36; x++)
         {
             FinalGrades[x] = (WrittenWorks[x]*0.2)+(PerformanceTask[x]*0.6)+(QuarterlyAssess[x]*0.2);
-            cout << setw(40) << left << StudentNames[x] << setprecision(4) << FinalGrades[x] << endl << endl;
+        }
+
+        for(int counter = 36; counter > 0; counter --)
+        {
+            for(int index = 0; index < 36; index++)
+            {
+                if(FinalGrades[index] < FinalGrades[index+1])
+                {
+                    tempStudentNames = StudentNames[index + 1];
+                    StudentNames[index + 1] = StudentNames[index];
+                    StudentNames[index] = tempStudentNames;
+
+                    tempWW = WrittenWorks[index + 1];
+                    WrittenWorks[index + 1] = WrittenWorks[index];
+                    WrittenWorks[index] = tempWW;
+
+                    tempPT = PerformanceTask[index + 1];
+                    PerformanceTask[index + 1] = PerformanceTask[index];
+                    PerformanceTask[index] = tempPT;
+
+                    tempQA = QuarterlyAssess[index + 1];
+                    QuarterlyAssess[index + 1] = QuarterlyAssess[index];
+                    QuarterlyAssess[index] = tempQA;
+
+                    tempFG = FinalGrades[index + 1];
+                    FinalGrades[index + 1] = FinalGrades[index];
+                    FinalGrades[index] = tempFG;
+                }
+            }
+        }
+
+        for(int x = 0; x <= 36; x++)
+        {
+            if(c <= 9)
+            {
+            cout << c << setw(3) << left << ". "  << setw(40) << left << StudentNames[x];
+            cout << setw(5) << left << setprecision(2) << fixed <<  WrittenWorks[x];
+            cout << setw(5) << left << setprecision(2) << fixed << PerformanceTask[x];
+            cout << setw(5) << left << setprecision(2) << fixed<< QuarterlyAssess[x];
+            cout << setw(10) << left << setprecision(2) << fixed << FinalGrades[x];
+            }
+
+            else if(c > 9)
+            {
+            cout << c << ". " << setw(40) << left << StudentNames[x];
+            cout << setw(5) << left << setprecision(2) << fixed <<  WrittenWorks[x];
+            cout << setw(5) << left << setprecision(2) << fixed << PerformanceTask[x];
+            cout << setw(5) << left << setprecision(2) << fixed<< QuarterlyAssess[x];
+            cout << setw(10) << left << setprecision(2) << fixed << FinalGrades[x];
+            }
 
             if(FinalGrades[x] >= 75)
             {
                 passed = passed + 1;
+                cout << setw(5) << left << "Passed" << endl << endl;
             }
             else
             {
                 failed = failed + 1;
+                cout << setw(5) << left << "Failed" << endl << endl;
             }
+
+            c++;
         }
 
         for(int y = 0; y <= 36; y++)
@@ -150,12 +381,120 @@ int main()
             sum = sum + FinalGrades[y];
         }
 
-        cout << "Arithmetic Mean: " << setprecision(4) << sum/36 << endl;
-        cout << "% Passing: " << setprecision(4) << (passed/37)*100 << "%" << endl;
-        cout << "% Failing: " << setprecision(4) << (failed/37)*100 << "%" << endl;
+        cout << setw(25) << left << "Submitted by:";
+        cout << setw(10) << left << "Arithmetic Mean: " << setprecision(2) << fixed << setw(10) << left << sum/37;
+        cout << setw(10) << left << "Checked by:" << endl;
+        cout << setw(25) << left << "" << setw(17) << left << "% Passing: " << setprecision(2) << fixed << (passed/37)*100 << "%" << endl;
+        cout << setw(25) << left << "Machacon, Zach Riane";
+        cout << setw(17) << left << "% Failing: " << setprecision(2) << fixed << (failed/37)*100 << setw(5) << left << "%";
+        cout << "Engr. Dang B. Guanzon" << endl;
+        cout << setw(52) << left << "Student Name";
+        cout << "Computer Teacher" << endl << endl;
     }
 
     else if((choice == "4") || (choice == "four") || (choice == "Four"))
+    {
+        cout << setw(43) << "COMPUTER PROJECT" <<endl;
+        cout << setw(47) << "ACADEMIC YEAR 2018-2019" <<endl;
+        cout << setw(48) << "UNIVERSITY OF SAN CARLOS" <<endl;
+        cout << setw(55) << "BASIC EDUCATION DEPARTMENT- SOUTH CAMPUS" <<endl;
+        cout << setw(50) << "J. Alcantara St., Cebu City" <<endl << endl;
+        cout << setw(40) << left << "Section: 10 - SCB" << "Subject: TLE/Computer 10" << endl;
+        cout << setw(40) << left << "Adviser: Mrs. Analiza Ceballos" << "Teacher: Mrs. Eleuteria Dang B. Guanzon" << endl << endl;
+        cout << setw(50) << right << "Sorted (Lowest to Highest)" << endl << endl << endl;
+        cout << setw(44) << left << "Name";
+        cout << setw(5) << left << "WW";
+        cout << setw(5) << left << "PT";
+        cout << setw(5) << left << "QA";
+        cout << setw(10) << left << "Grade";
+        cout << setw(5) << left << "Remarks" << endl << endl;
+
+        for(int x = 0; x <= 36; x++)
+        {
+            FinalGrades[x] = (WrittenWorks[x]*0.2)+(PerformanceTask[x]*0.6)+(QuarterlyAssess[x]*0.2);
+        }
+
+        for(int counter = 36; counter > 0; counter --)
+        {
+            for(int index = 0; index < 36; index++)
+            {
+                if(FinalGrades[index] > FinalGrades[index+1])
+                {
+                    tempStudentNames = StudentNames[index + 1];
+                    StudentNames[index + 1] = StudentNames[index];
+                    StudentNames[index] = tempStudentNames;
+
+                    tempWW = WrittenWorks[index + 1];
+                    WrittenWorks[index + 1] = WrittenWorks[index];
+                    WrittenWorks[index] = tempWW;
+
+                    tempPT = PerformanceTask[index + 1];
+                    PerformanceTask[index + 1] = PerformanceTask[index];
+                    PerformanceTask[index] = tempPT;
+
+                    tempQA = QuarterlyAssess[index + 1];
+                    QuarterlyAssess[index + 1] = QuarterlyAssess[index];
+                    QuarterlyAssess[index] = tempQA;
+
+                    tempFG = FinalGrades[index + 1];
+                    FinalGrades[index + 1] = FinalGrades[index];
+                    FinalGrades[index] = tempFG;
+                }
+            }
+        }
+
+        for(int x = 0; x <= 36; x++)
+        {
+            if(c <= 9)
+            {
+            cout << c << setw(3) << left << ". "  << setw(40) << left << StudentNames[x];
+            cout << setw(5) << left << setprecision(2) << fixed <<  WrittenWorks[x];
+            cout << setw(5) << left << setprecision(2) << fixed << PerformanceTask[x];
+            cout << setw(5) << left << setprecision(2) << fixed<< QuarterlyAssess[x];
+            cout << setw(10) << left << setprecision(2) << fixed << FinalGrades[x];
+            }
+
+            else if(c > 9)
+            {
+            cout << c << ". " << setw(40) << left << StudentNames[x];
+            cout << setw(5) << left << setprecision(2) << fixed <<  WrittenWorks[x];
+            cout << setw(5) << left << setprecision(2) << fixed << PerformanceTask[x];
+            cout << setw(5) << left << setprecision(2) << fixed << QuarterlyAssess[x];
+            cout << setw(10) << left << setprecision(2) << fixed << FinalGrades[x];
+            }
+
+            if(FinalGrades[x] >= 75)
+            {
+                passed = passed + 1;
+                cout << setw(5) << left << "Passed" << endl << endl;
+            }
+            else
+            {
+                failed = failed + 1;
+                cout << setw(5) << left << "Failed" << endl << endl;
+            }
+
+            c++;
+        }
+
+        for(int y = 0; y <= 36; y++)
+        {
+            sum = sum + FinalGrades[y];
+        }
+
+        cout << setw(25) << left << "Submitted by:";
+        cout << setw(10) << left << "Arithmetic Mean: " << setprecision(2) << fixed << setw(10) << left << sum/37;
+        cout << setw(10) << left << "Checked by:" << endl;
+        cout << setw(25) << left << "" << setw(17) << left << "% Passing: " << setprecision(2) << fixed << (passed/37)*100 << "%" << endl;
+        cout << setw(25) << left << "Machacon, Zach Riane";
+        cout << setw(17) << left << "% Failing: " << setprecision(2) << fixed << (failed/37)*100 << setw(5) << left << "%";
+        cout << "Engr. Dang B. Guanzon" << endl;
+        cout << setw(52) << left << "Student Name";
+        cout << "Computer Teacher" << endl << endl;
+    }
+
+
+    else if((choice == "5") || (choice == "five") || (choice == "Five"))
     {
         cout << "Are you sure you want to quit? (y/n)" << endl;
         cin >> choice2;
@@ -163,7 +502,7 @@ int main()
         {
             if((choice2 == "y") || (choice2 == "yes") || (choice2 == "Yes")) //accepts other variations of yes.
             {
-                cout << "Goodbye!" << endl;
+                cout << "Goodbye, " << login1 << "!" << endl;
             }
             else if((choice2 == "n") || (choice2 == "no") || (choice2 == "No")) //accepts other variations of no.
             {
@@ -175,7 +514,26 @@ int main()
     else
     {
         cout << "Invalid number. Please enter again." << endl << endl;
-        goto menu;
+        bot = bot + 1;
+        if(bot >= 5)
+        {
+            system("cls");
+            cout << "You have entered a number too many times. Are you a bot? (y/n)";
+            cin >> botChoice;
+            if((botChoice == "y") || (botChoice == "yes") || (botChoice == "Yes")) //accepts other variations of yes.
+            {
+                cout << "Goodbye, " << login1 << "!" << endl;
+            }
+            else if((botChoice == "n") || (botChoice == "no") || (botChoice == "No")) //accepts other variations of no.
+            {
+                system("cls");
+                goto menu;
+            }
+        }
+        else
+        {
+            goto menu;
+        }
     }
 
     return 0;
